@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AdToAppSDK Demo</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="show_interstitial">Show Ad</string>
+    <string name="show_interstitial_on_new_activity">Show Ad On Start Activity</string>
+    <string name="title_activity_another">AnotherActivity</string>
+    <string name="press_back">Press back button to show ad</string>
+</resources>
