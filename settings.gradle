@@ -1,1 +1,1 @@
-include ':AdToAppInterstitialBanner', ':AdToAppRewarded'
+include ':AdToAppInterstitialBanner', ':AdToAppRewarded', ':AdToAppNative'

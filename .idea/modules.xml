@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AdToAppInterstitialBanner/AdToAppInterstitialBanner.iml" filepath="$PROJECT_DIR$/AdToAppInterstitialBanner/AdToAppInterstitialBanner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AdToAppNative/AdToAppNative.iml" filepath="$PROJECT_DIR$/AdToAppNative/AdToAppNative.iml" />
       <module fileurl="file://$PROJECT_DIR$/AdToAppRewarded/AdToAppRewarded.iml" filepath="$PROJECT_DIR$/AdToAppRewarded/AdToAppRewarded.iml" />
       <module fileurl="file://$PROJECT_DIR$/AdToAppSDKDemo.iml" filepath="$PROJECT_DIR$/AdToAppSDKDemo.iml" />
     </modules>
