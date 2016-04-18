@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.appintop.adbanner.BannerAdContainer;
 import com.appintop.adbanner.BannerListener;
+import com.appintop.common.AdProvider;
+import com.appintop.common.TargetingParam;
 import com.appintop.init.AdToApp;
 import com.appintop.interstitialads.DefaultInterstitialListener;
 
@@ -94,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //AdToApp.setTestMode(true);
+        //AdToApp.disableAdNetwork(AdToApp.MASK_BANNER | AdToApp.MASK_IMAGE, AdProvider.ADMOB, AdProvider.STARTAPP);
+        //AdToApp.disableAdNetwork(AdToApp.MASK_INTERSTITIAL | AdToApp.MASK_REWARDED, AdProvider.ADCOLONY, AdProvider.UNITYADS);
+        //AdToApp.setTargetingParam(TargetingParam.USER_GENDER, TargetingParam.USER_GENDER_MALE);
+        //AdToApp.setTargetingParam(TargetingParam.USER_AGE, "18");
         AdToApp.setLogging(true);
         AdToApp.initializeSDK(this, ADTOAPP_SDK_KEY,
                 AdToApp.MASK_BANNER | AdToApp.MASK_INTERSTITIAL);

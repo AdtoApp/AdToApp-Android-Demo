@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <!-- WOOBI -->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -108,6 +111,43 @@
                 <action android:name="com.personagraph.SensorService" />
             </intent-filter>
         </service>
+
+        <!-- SUPERSONIC -->
+        <activity
+            android:name="com.supersonicads.sdk.controller.ControllerActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true" />
+        <activity
+            android:name="com.supersonicads.sdk.controller.InterstitialActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.supersonicads.sdk.controller.OpenUrlActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <!-- VUNGLE -->
+        <activity
+            android:name="com.vungle.publisher.FullScreenAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+
+        <!-- WOOBI -->
+        <activity android:name="com.woobi.view.OfferWallActivity" android:configChanges="orientation|screenSize" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="com.woobi.view.OfferDescriptionActivity" android:configChanges ="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity><activity android:name="com.woobi.view.OfferActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name="com.woobi.view.OfferIncentiveAppDescrptionPopupActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name="com.woobi.view.OfferNonIncentiveAppDescrptionPopupActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name="com.woobi.view.SponsoredByDialogActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>      <activity android:name="com.woobi.view.OfferPopupActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+
+        <activity android:name="com.woobi.view.ApkDownloadDialogActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity android:name="com.woobi.view.VideoExitQueryDialogActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity android:name="com.woobi.sourcekit.vast.activity.VastVideoActivity" android:configChanges="orientation|screenSize" android:screenOrientation="landscape" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name="com.woobi.sourcekit.vast.activity.VastVideoPopupActivity" android:configChanges="orientation|screenSize" android:screenOrientation="landscape" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

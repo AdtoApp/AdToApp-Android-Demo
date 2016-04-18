@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <!-- WOOBI -->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -104,37 +107,38 @@
         <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
 
-        <!-- YANDEX -->
+        <!-- start of Yandex Metrica -->
         <service
             android:name="com.yandex.metrica.MetricaService"
             android:enabled="true"
             android:exported="true"
             android:process=":Metrica">
+
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="com.yandex.metrica.IMetricaService" />
-
-                <data android:scheme="metrica" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.yandex.metrica.IMetricaService"/>
+                <data android:scheme="metrica"/>
             </intent-filter>
 
-            <meta-data
-                android:name="metrica:api:level"
-                android:value="39" />
+            <meta-data android:name="metrica:api:level" android:value="43"/>
         </service>
 
         <receiver
             android:name="com.yandex.metrica.MetricaEventHandler"
             android:enabled="true"
             android:exported="true">
+
+            <!-- INSTALL_REFERRER necessary for tracking campaigns -->
             <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
             </intent-filter>
         </receiver>
-
+        <!-- end of Yandex Metrica -->
+        <!-- start of Yandex Interstitial -->
         <activity
             android:name="com.yandex.mobile.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <!-- end of Yandex Interstitial -->
 
         <!-- AMAZON -->
         <activity
@@ -182,6 +186,27 @@
                 <action android:name="com.personagraph.SensorService" />
             </intent-filter>
         </service>
+
+        <!-- VUNGLE -->
+        <activity
+            android:name="com.vungle.publisher.FullScreenAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+
+        <!-- WOOBI -->
+        <activity android:name="com.woobi.view.OfferWallActivity" android:configChanges="orientation|screenSize" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="com.woobi.view.OfferDescriptionActivity" android:configChanges ="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity><activity android:name="com.woobi.view.OfferActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name="com.woobi.view.OfferIncentiveAppDescrptionPopupActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name="com.woobi.view.OfferNonIncentiveAppDescrptionPopupActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name="com.woobi.view.SponsoredByDialogActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>      <activity android:name="com.woobi.view.OfferPopupActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+
+        <activity android:name="com.woobi.view.ApkDownloadDialogActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity android:name="com.woobi.view.VideoExitQueryDialogActivity" android:configChanges="orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity android:name="com.woobi.sourcekit.vast.activity.VastVideoActivity" android:configChanges="orientation|screenSize" android:screenOrientation="landscape" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name="com.woobi.sourcekit.vast.activity.VastVideoPopupActivity" android:configChanges="orientation|screenSize" android:screenOrientation="landscape" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name=".MainActivity"

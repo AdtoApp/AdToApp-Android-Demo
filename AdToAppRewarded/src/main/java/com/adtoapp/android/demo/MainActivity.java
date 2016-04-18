@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appintop.common.AdProvider;
+import com.appintop.common.TargetingParam;
 import com.appintop.init.AdToApp;
 import com.appintop.interstitialads.InterstitialListener;
+import com.appintop.interstitialads.rewarded.RewardedAdValues;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,8 +30,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFirstInterstitialLoad(String adType, String provider) {
             Log.d(TAG, "onFirstInterstitialLoad");
+
+            RewardedAdValues rewardedSettings = AdToApp.getRewardedAdValues();
+            String rewardedName = rewardedSettings.getName();
+            String rewardedValue = rewardedSettings.getValue();
+
             Toast toast = Toast.makeText(MainActivity.this,
-                    String.format("onFirstInterstitialLoad %s %s", adType, provider),
+                    String.format("onFirstInterstitialLoad %s %s, rewarded name: %s, value: %s", adType, provider, rewardedName, rewardedValue),
                     Toast.LENGTH_SHORT);
             toast.show();
             sdkStateTextView.setText("SDK is ready");
@@ -88,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //AdToApp.setTestMode(true);
+        //AdToApp.disableAdNetwork(AdToApp.MASK_REWARDED, AdProvider.ADCOLONY, AdProvider.UNITYADS);
+        //AdToApp.setTargetingParam(TargetingParam.USER_GENDER, TargetingParam.USER_GENDER_MALE);
+        //AdToApp.setTargetingParam(TargetingParam.USER_AGE, "18");
         AdToApp.setLogging(true);
         AdToApp.initializeSDK(this, ADTOAPP_SDK_KEY, AdToApp.MASK_REWARDED);
 

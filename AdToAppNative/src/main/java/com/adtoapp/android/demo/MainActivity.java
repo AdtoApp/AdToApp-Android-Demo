@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appintop.common.AdProvider;
+import com.appintop.common.TargetingParam;
 import com.appintop.init.AdToApp;
 import com.appintop.nativeads.AdToAppNative;
 import com.appintop.nativeads.NativeAd;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         }
         ads = new ArrayList<>();
 
+        //AdToApp.disableAdNetwork(AdToApp.MASK_NATIVE, AdProvider.APPLOVIN);
+        //AdToApp.setTargetingParam(TargetingParam.USER_GENDER, TargetingParam.USER_GENDER_MALE);
+        //AdToApp.setTargetingParam(TargetingParam.USER_AGE, "18");
         AdToApp.setLogging(true);
         AdToApp.initializeSDK(this,
                 "710860d4-6c77-45ab-91eb-062955745997:42e13e6f-33d2-4656-98ae-456324801e51",
