@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         AdToApp.loadNativeAd(this, new AdToAppNative.AdLoadListener() {
             @Override
-            public void onLoadAd(final NativeAd ad, int providerId) {
+            public void onLoadAd(final NativeAd ad, String provider) {
                 // Use object ad for display Native advertising
                 ads.add(ad);
 
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public AdToAppNative.Action onFailLoadAd(String error, int providerId) {
+            public AdToAppNative.Action onFailLoadAd(String error, String provider) {
                 // Failed to load ad one of the providers in the queue
                 // By default try to load ad of the next provider
                 return AdToAppNative.Action.TRY_NEXT_PROVIDER;
