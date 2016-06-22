@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -18,6 +17,7 @@ import com.appintop.common.TargetingParam;
 import com.appintop.init.AdToApp;
 import com.appintop.nativeads.AdToAppNative;
 import com.appintop.nativeads.NativeAd;
+import com.appintop.nativeads.NativeAdView;
 import com.appintop.nativeads.OnNativeAdsAvailabilityListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -173,23 +173,44 @@ public class MainActivity extends AppCompatActivity {
         }
 
         View getNativeAdView(View convertView, NativeAd ad, ViewGroup parent) {
-            if (convertView == null || !(convertView.getTag() instanceof NativeAdViewHolder)) {
-                NativeAdViewHolder holder = new NativeAdViewHolder();
-                LinearLayout view = (LinearLayout)View.inflate(parent.getContext(), R.layout.native_ad_view, null);
-                holder.iconView = (ImageView)view.findViewById(R.id.icon);
-                holder.titleView = (TextView)view.findViewById(R.id.title);
-                holder.imageView = (ImageView)view.findViewById(R.id.image);
-                holder.descriptionView = (TextView)view.findViewById(R.id.text);
-                holder.ratingView = (TextView)view.findViewById(R.id.rating);
-                holder.clickButton = (Button)view.findViewById(R.id.installButton);
-                holder.fillView(ad, view);
-                view.setTag(holder);
+            if (convertView == null || !(convertView instanceof NativeAdView)) {
+                NativeAdView view = (NativeAdView)View.inflate(parent.getContext(), R.layout.native_ad_view, null);
+                view.setTitleView(view.findViewById(R.id.title));
+                view.setDescriptionTextView(view.findViewById(R.id.text));
+                view.setIconView(view.findViewById(R.id.icon));
+                view.setImageView(view.findViewById(R.id.image));
+                view.setStarRaitingView(view.findViewById(R.id.rating));
+                view.setCtaTextView(view.findViewById(R.id.installButton));
+
+                fillNativeAdView(view, ad);
+
+                return view;
+            } else if (convertView instanceof NativeAdView) {
+                NativeAdView view = (NativeAdView)convertView;
+
+                fillNativeAdView(view, ad);
+
                 return view;
             } else {
-                NativeAdViewHolder holder = (NativeAdViewHolder)convertView.getTag();
-                holder.fillView(ad, convertView);
                 return convertView;
             }
+        }
+
+        void fillNativeAdView(NativeAdView view, NativeAd ad) {
+            ((TextView)view.getTitleView()).setText(ad.getTitle());
+            ((TextView)view.getDescriptionTextView()).setText(ad.getDescriptionText());
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage(ad.getIconUrl(), (ImageView) view.getIconView());
+            imageLoader.displayImage(ad.getImageUrl(), (ImageView) view.getImageView());
+            ((TextView)view.getStarRaitingView()).setText("Rating " + String.valueOf(ad.getStarRaiting()));
+
+            if (ad.getCtaText() != null) {
+                ((TextView)view.getCtaTextView()).setText(ad.getCtaText());
+            } else {
+                ((TextView)view.getCtaTextView()).setText("Install");
+            }
+
+            view.setNativeAd(ad);
         }
 
         View getItemView(View convertView, String item, ViewGroup parent) {
@@ -210,37 +231,5 @@ public class MainActivity extends AppCompatActivity {
 
     class ItemViewHolder {
         TextView textView;
-    }
-
-    class NativeAdViewHolder {
-        ImageView iconView;
-        TextView titleView;
-        ImageView imageView;
-        TextView descriptionView;
-        TextView ratingView;
-        Button clickButton;
-
-        void fillView(final NativeAd ad, View view) {
-            titleView.setText(ad.getTitle());
-            descriptionView.setText(ad.getDescriptionText());
-            ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.displayImage(ad.getIconUrl(), iconView);
-            imageLoader.displayImage(ad.getImageUrl(), imageView);
-            ratingView.setText("Rating " + String.valueOf(ad.getStarRaiting()));
-            if (ad.getCtaText() != null) {
-                clickButton.setText(ad.getCtaText());
-            } else {
-                clickButton.setText("Install");
-            }
-            clickButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ad.displayAndHandleClick(MainActivity.this);
-                }
-            });
-            ad.detachFromView();
-            ad.trackImpression();
-            ad.attachToView(view);
-        }
     }
 }
