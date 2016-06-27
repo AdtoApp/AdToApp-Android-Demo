@@ -28,6 +28,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.adtoapp.android:adtoapp-banner:4.5.1'
-    compile 'com.adtoapp.android:adtoapp-interstitial:4.5.1'
+    compile 'com.adtoapp.android:adtoapp-banner:4.5.2'
+    compile 'com.adtoapp.android:adtoapp-interstitial:4.5.2'
 }
