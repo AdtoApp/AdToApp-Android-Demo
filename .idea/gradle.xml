@@ -15,14 +15,7 @@
             <option value="$PROJECT_DIR$/AdToAppRewarded" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/AdToAppInterstitialBanner" />
-            <option value="$PROJECT_DIR$/AdToAppNative" />
-            <option value="$PROJECT_DIR$/AdToAppRewarded" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
