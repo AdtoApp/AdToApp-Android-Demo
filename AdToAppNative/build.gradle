@@ -23,5 +23,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-    compile 'com.adtoapp.android:adtoapp-native:4.5.7'
+    compile 'com.adtoapp.android:adtoapp-native:4.6.2'
 }
