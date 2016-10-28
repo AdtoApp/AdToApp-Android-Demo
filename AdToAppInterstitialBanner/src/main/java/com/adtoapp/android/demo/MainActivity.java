@@ -113,13 +113,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         bannerStateTextView = (TextView)findViewById(R.id.banner_state);
-        bannerStateTextView.setText("Banner is loading...");
 
         interstitialStateTextView = (TextView)findViewById(R.id.interstitial_state);
-        interstitialStateTextView.setText("Interstitial is loading...");
 
         showInterstitialButton = (Button)findViewById(R.id.button_show_interstitial);
-        showInterstitialButton.setEnabled(false);
         showInterstitialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         showAdOnNewActivityButton = (Button)findViewById(R.id.button_show_interstitial_on_new_activity);
-        showAdOnNewActivityButton.setEnabled(false);
         showAdOnNewActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +132,19 @@ public class MainActivity extends AppCompatActivity {
                 AdToApp.showInterstitialAd();
             }
         });
+
+        if (!AdToApp.isAvailableAd(AdToApp.BANNER)) {
+            bannerStateTextView.setText("Banner is loading...");
+        } else {
+            bannerStateTextView.setText("Banner is ready");
+        }
+        if (!AdToApp.isAvailableAd(AdToApp.INTERSTITIAL)) {
+            interstitialStateTextView.setText("Interstitial is loading...");
+            showInterstitialButton.setEnabled(false);
+            showAdOnNewActivityButton.setEnabled(false);
+        } else {
+            interstitialStateTextView.setText("Interstitial is ready");
+        }
 
         banner = (BannerAdContainer)findViewById(R.id.adtoapp_banner);
         banner.setBannerListener(new BannerListener() {
